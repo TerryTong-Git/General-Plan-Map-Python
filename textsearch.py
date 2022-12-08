@@ -39,7 +39,7 @@ from bokeh.models import FixedTicker
 
 from bokeh.models import BasicTickFormatter
 from bokeh.transform import linear_cmap,factor_cmap
-import textract
+# import textract
 ### BELOW NEEDED TO EXPORT BOKEH IMAGE FILES
 # from bokeh.io import export_png
 # from bokeh.io.export import get_screenshot_as_png
