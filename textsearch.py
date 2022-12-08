@@ -55,6 +55,8 @@ bootstrap = Bootstrap(app)  # create bootstrap object
 @app.route('/', methods=['GET'])  # declare flask page url
 def my_form():  # function for main index
 
+    # return render_template('maintenance_progress.html')
+
     # Defining the color coding for the cities.
     color1 = "#2ca25f" # Green : Cities with plan updated less than 5 years ago.
     color2 = "#fec44f" # Yellow : Cities with plan updated 5-10 years ago.
@@ -674,6 +676,7 @@ class Result:
         Returns:
             [type]: a parsed query that can be used in html
         """
+        query = "\"" + query + "\""
         phrases_in_quotes = re.findall(r'\"(.+?)\"',query)
         non_quotes = re.sub(r'"',"", re.sub(r'\"(.+?)\"', '', query))
         all_words = re.findall('[A-z]+', non_quotes)
@@ -1022,6 +1025,7 @@ def highlight_pdf(city, words):
     Returns:
         str: webpages
     """
+    # import pdb; pdb.set_trace()
     complete_name = os.path.join("static/data/places", city)
     doc = fitz.open(complete_name)
     page_count= len(doc)  # find no. of pages in pdf
@@ -1039,6 +1043,7 @@ def highlight_pdf(city, words):
                 # list returned by searchFor can be used directly as argument to highlight
                 doc[i].addHighlightAnnot(text_instances[k])
 
+    # breakpoint()
     highlighted_complete_name = os.path.join("static/data/pdfoutput","output.pdf")
     doc.save(highlighted_complete_name)
     doc.close()
